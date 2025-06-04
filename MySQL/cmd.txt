@@ -1,0 +1,211 @@
++------------+-----------------+-------+-------+--------+--------------+----------------+
+| id_produto | nome            | preco | quant | marca  | id_categoria | unidade_medida |
++------------+-----------------+-------+-------+--------+--------------+----------------+
+|          1 | Sabão em Pó     | 30.50 |    50 | OMO    |            1 | NULL           |
+|          2 | Detergente      |  3.55 |    10 | Ypê    |            1 | NULL           |
+|          3 | Queijo          | 60.00 |    80 | Italac |            2 | NULL           |
+|          4 | Presunto        | 30.00 |    80 | Seara  |            2 | NULL           |
+|          5 | Carne           | 55.00 |   300 | Friboi |            3 | NULL           |
+|          6 | Frango          | 25.50 |   200 | Swift  |            3 | NULL           |
+|          7 | Milho           |  3.60 |   100 | Quero  |            4 | NULL           |
+|          8 | Ervilha         |  3.50 |   100 | Quero  |            4 | NULL           |
+|          9 | Laranja         |  7.99 |   150 | Lima   |            5 | NULL           |
+|         10 | Maçã            | 11.98 |   120 | Gala   |            5 | NULL           |
+|         11 | Papel higiênico | 42.00 |   100 | Neve   |            6 | NULL           |
+|         12 | Papel toalha    | 10.90 |   100 | Snob   |            6 | NULL           |
+|         13 | Iogurte         |  3.00 |   150 | Nestlé |            7 | NULL           |
+|         14 | Manteiga        |  8.50 |   150 | Qualy  |            7 | NULL           |
++------------+-----------------+-------+-------+--------+--------------+----------------+
+14 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT nome, preco FROM produtos;
++-----------------+-------+
+| nome            | preco |
++-----------------+-------+
+| Sabão em Pó     | 30.50 |
+| Detergente      |  3.55 |
+| Queijo          | 60.00 |
+| Presunto        | 30.00 |
+| Carne           | 55.00 |
+| Frango          | 25.50 |
+| Milho           |  3.60 |
+| Ervilha         |  3.50 |
+| Laranja         |  7.99 |
+| Maçã            | 11.98 |
+| Papel higiênico | 42.00 |
+| Papel toalha    | 10.90 |
+| Iogurte         |  3.00 |
+| Manteiga        |  8.50 |
++-----------------+-------+
+14 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos WHERE marca = 'Quero';
++------------+---------+-------+-------+-------+--------------+----------------+
+| id_produto | nome    | preco | quant | marca | id_categoria | unidade_medida |
++------------+---------+-------+-------+-------+--------------+----------------+
+|          7 | Milho   |  3.60 |   100 | Quero |            4 | NULL           |
+|          8 | Ervilha |  3.50 |   100 | Quero |            4 | NULL           |
++------------+---------+-------+-------+-------+--------------+----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos WHERE preco > 25;
++------------+-----------------+-------+-------+--------+--------------+----------------+
+| id_produto | nome            | preco | quant | marca  | id_categoria | unidade_medida |
++------------+-----------------+-------+-------+--------+--------------+----------------+
+|          1 | Sabão em Pó     | 30.50 |    50 | OMO    |            1 | NULL           |
+|          3 | Queijo          | 60.00 |    80 | Italac |            2 | NULL           |
+|          4 | Presunto        | 30.00 |    80 | Seara  |            2 | NULL           |
+|          5 | Carne           | 55.00 |   300 | Friboi |            3 | NULL           |
+|          6 | Frango          | 25.50 |   200 | Swift  |            3 | NULL           |
+|         11 | Papel higiênico | 42.00 |   100 | Neve   |            6 | NULL           |
++------------+-----------------+-------+-------+--------+--------------+----------------+
+6 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos WHERE quant <= 90;
++------------+-------------+-------+-------+--------+--------------+----------------+
+| id_produto | nome        | preco | quant | marca  | id_categoria | unidade_medida |
++------------+-------------+-------+-------+--------+--------------+----------------+
+|          1 | Sabão em Pó | 30.50 |    50 | OMO    |            1 | NULL           |
+|          2 | Detergente  |  3.55 |    10 | Ypê    |            1 | NULL           |
+|          3 | Queijo      | 60.00 |    80 | Italac |            2 | NULL           |
+|          4 | Presunto    | 30.00 |    80 | Seara  |            2 | NULL           |
++------------+-------------+-------+-------+--------+--------------+----------------+
+4 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT nome, preco FROM produtos ORDER BY preco ASC LIMIT 5;
++------------+-------+
+| nome       | preco |
++------------+-------+
+| Iogurte    |  3.00 |
+| Ervilha    |  3.50 |
+| Detergente |  3.55 |
+| Milho      |  3.60 |
+| Laranja    |  7.99 |
++------------+-------+
+5 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT nome, preco FROM produtos ORDER BY preco DESC LIMIT 15;
++-----------------+-------+
+| nome            | preco |
++-----------------+-------+
+| Queijo          | 60.00 |
+| Carne           | 55.00 |
+| Papel higiênico | 42.00 |
+| Sabão em Pó     | 30.50 |
+| Presunto        | 30.00 |
+| Frango          | 25.50 |
+| Maçã            | 11.98 |
+| Papel toalha    | 10.90 |
+| Manteiga        |  8.50 |
+| Laranja         |  7.99 |
+| Milho           |  3.60 |
+| Detergente      |  3.55 |
+| Ervilha         |  3.50 |
+| Iogurte         |  3.00 |
++-----------------+-------+
+14 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT COUNT(*) AS total_produtos FROM produtos;
++----------------+
+| total_produtos |
++----------------+
+|             14 |
++----------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT AVG(preco) AS preco_medio FROM produtos;
++-------------+
+| preco_medio |
++-------------+
+|   21.144286 |
++-------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT nome, quant FROM produtos ORDER BY quant DESC LIMIT 1;
++-------+-------+
+| nome  | quant |
++-------+-------+
+| Carne |   300 |
++-------+-------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT p.nome, c.nome_cat FROM produtos p JOIN categorias c ON p.id_categoria = c.id_categoria;
++-----------------+------------+
+| nome            | nome_cat   |
++-----------------+------------+
+| Sabão em Pó     | Limpeza    |
+| Detergente      | Limpeza    |
+| Queijo          | Frios      |
+| Presunto        | Frios      |
+| Carne           | Açougue    |
+| Frango          | Açougue    |
+| Milho           | Enlatados  |
+| Ervilha         | Enlatados  |
+| Laranja         | Hortifruti |
+| Maçã            | Hortifruti |
+| Papel higiênico | Higiene    |
+| Papel toalha    | Higiene    |
+| Iogurte         | Laticínios |
+| Manteiga        | Laticínios |
++-----------------+------------+
+14 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT p.nome, p.marca, p.preco FROM produtos p JOIN categorias c ON p.id_categoria = c.id_categoria WHERE c.nome_cat = 'Laticínios';
++----------+--------+-------+
+| nome     | marca  | preco |
++----------+--------+-------+
+| Iogurte  | Nestlé |  3.00 |
+| Manteiga | Qualy  |  8.50 |
++----------+--------+-------+
+2 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT c.nome_cat, COUNT(*) AS total_produtos FROM produtos p JOIN categorias c ON p.id_categoria = c.id_categoria GROUP BY c.nome_cat;
++------------+----------------+
+| nome_cat   | total_produtos |
++------------+----------------+
+| Açougue    |              2 |
+| Enlatados  |              2 |
+| Frios      |              2 |
+| Higiene    |              2 |
+| Hortifruti |              2 |
+| Laticínios |              2 |
+| Limpeza    |              2 |
++------------+----------------+
+7 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos WHERE preco BETWEEN 10 AND 20;
++------------+--------------+-------+-------+-------+--------------+----------------+
+| id_produto | nome         | preco | quant | marca | id_categoria | unidade_medida |
++------------+--------------+-------+-------+-------+--------------+----------------+
+|         10 | Maçã         | 11.98 |   120 | Gala  |            5 | NULL           |
+|         12 | Papel toalha | 10.90 |   100 | Snob  |            6 | NULL           |
++------------+--------------+-------+-------+-------+--------------+----------------+
+2 rows in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT * FROM produtos WHERE nome LIKE 'E%';
++------------+---------+-------+-------+-------+--------------+----------------+
+| id_produto | nome    | preco | quant | marca | id_categoria | unidade_medida |
++------------+---------+-------+-------+-------+--------------+----------------+
+|          8 | Ervilha |  3.50 |   100 | Quero |            4 | NULL           |
++------------+---------+-------+-------+-------+--------------+----------------+
+1 row in set (0.000 sec)
+
+MariaDB [etecmcm2]> SELECT DISTINCT marca FROM produtos;
++--------+
+| marca  |
++--------+
+| OMO    |
+| Ypê    |
+| Italac |
+| Seara  |
+| Friboi |
+| Swift  |
+| Quero  |
+| Lima   |
+| Gala   |
+| Neve   |
+| Snob   |
+| Nestlé |
+| Qualy  |
++--------+
+13 rows in set (0.000 sec)
